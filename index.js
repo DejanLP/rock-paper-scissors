@@ -55,7 +55,7 @@ function playRPS (playerSelection, computerSelection) {
         return 'noWinner';
     }
     else {
-        return 'Please enter rock, paper or scissors to play!'
+        return 'invalid'
     }
 }
 
@@ -63,7 +63,7 @@ function playGame() {
     let playerCount = 0;
     let computerCount = 0;
 
-    for (let i = 1; i<=5; i++) {
+    while (playerCount < 3 || computerCount < 3) {
         const playerInput = prompt('Enter your choice');
         const computerInput = computerPlay();
 
@@ -76,14 +76,18 @@ function playGame() {
             computerCount += 1;
             console.log(`Computer wins! New score: ${playerCount}:${computerCount}!`);
         }
+        else if (round == 'invalid'){
+            console.log('Please enter one of rock, paper or scissors!');
+        }
         else {
             console.log(`No winner! Score stays ${playerCount}:${computerCount}!`);
         }
         if(playerCount == 3 || computerCount == 3) {
             if(playerCount == 3) {
-                console.log(`Best of 3 is over! You win with the score ${playerCount}:${computerCount}!`);
+                console.log(`Best of 5 is over! You win with the score ${playerCount}:${computerCount}!`);
+                break;
             }
-            console.log(`Best of 3 is over! Computer wins with the score ${playerCount}:${computerCount}!`);
+            console.log(`Best of 5 is over! Computer wins with the score ${playerCount}:${computerCount}!`);
             break;
         }
     }
