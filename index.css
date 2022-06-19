@@ -15,8 +15,24 @@ body{
     gap: 48px;
     flex-wrap: wrap;
 }
-
-.button {
+.scissors {
+    background-image: url('assets/scissors.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+/* make one "option-image" class*/
+.rock {
+    background-image: url('assets/rock.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.start-btn {
+    padding: 10px;
+    margin: auto auto;
+}
+.option {
     width: 10em;
     height: 10em;
 }

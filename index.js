@@ -1,6 +1,9 @@
 /**
- * Game logic
+ * ============================
+ * Part for game logic
+ * ============================
  */
+//randomly assign computer option
 function computerPlay () {
     let random = parseInt(Math.random() * 100);
 
@@ -15,6 +18,7 @@ function computerPlay () {
     }
 }
 
+//one round of rock paper scissors and return result
 function playRPS (playerSelection, computerSelection) {
     const playerSelectionFormatted = playerSelection.toLowerCase();
 
@@ -60,12 +64,12 @@ function playRPS (playerSelection, computerSelection) {
         return 'invalid'
     }
 }
-
+//best of five and store points of each player
 function playGame() {
     let playerCount = 0;
     let computerCount = 0;
 
-    //while (playerCount < 3 || computerCount < 3) {
+    while (playerCount < 3 || computerCount < 3) {
         const playerInput = prompt('Enter your choice');
         const computerInput = computerPlay();
 
@@ -87,17 +91,61 @@ function playGame() {
         if(playerCount == 3 || computerCount == 3) {
             if(playerCount == 3) {
                 console.log(`Best of 5 is over! You win with the score ${playerCount}:${computerCount}!`);
-                //break;
+                break;
             }
             console.log(`Best of 5 is over! Computer wins with the score ${playerCount}:${computerCount}!`);
-            //break;
+            break;
         }
     }
-//}
+}
 
 /**
+ * ====================================
  * Part for the UI logic
+ * ====================================
  */
+
+//listen for start button, to start the game
+const start = document.querySelector('.start-btn');
+start.addEventListener('click', initGame);
+
+
+/**
+            <button class="option rock">Rock</button>
+            <button class="option paper">Paper</button>
+            <button class="option scissors">Scissors</button>
+ */
+function initGame() {
+    //new title for h1
+    const h1 = document.querySelector('h1');
+    h1.textContent = 'Rock, paper or scissors?';
+
+    const start_btn = document.querySelector('.start-btn');
+    start_btn.remove();
+    
+    //add option buttons
+    const buttons = document.querySelector('.buttons');
+    const rock = document.createElement('button');
+    const scissors = document.createElement('button');
+    const paper = document.createElement('button');
+
+    rock.classList.add('option');
+    rock.classList.add('rock');
+
+    paper.classList.add('option');
+    paper.classList.add('paper');
+    paper.textContent = 'Paper';
+
+    scissors.classList.add('option');
+    scissors.classList.add('scissors');
+
+    buttons.appendChild(rock);
+    buttons.appendChild(paper);
+    buttons.appendChild(scissors);
+
+    //playGame;
+} 
+
 
 //Add a subheader when hovering over a button
 function hoverHeader() {
