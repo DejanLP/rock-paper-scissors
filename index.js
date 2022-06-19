@@ -1,4 +1,6 @@
-
+/**
+ * Game logic
+ */
 function computerPlay () {
     let random = parseInt(Math.random() * 100);
 
@@ -63,7 +65,7 @@ function playGame() {
     let playerCount = 0;
     let computerCount = 0;
 
-    while (playerCount < 3 || computerCount < 3) {
+    //while (playerCount < 3 || computerCount < 3) {
         const playerInput = prompt('Enter your choice');
         const computerInput = computerPlay();
 
@@ -85,10 +87,31 @@ function playGame() {
         if(playerCount == 3 || computerCount == 3) {
             if(playerCount == 3) {
                 console.log(`Best of 5 is over! You win with the score ${playerCount}:${computerCount}!`);
-                break;
+                //break;
             }
             console.log(`Best of 5 is over! Computer wins with the score ${playerCount}:${computerCount}!`);
-            break;
+            //break;
         }
     }
+//}
+
+/**
+ * Part for the UI logic
+ */
+
+//Add a subheader when hovering over a button
+function hoverHeader() {
+    const h2Exist = document.querySelector('h2');
+    if(h2Exist == null) {
+        const header = document.querySelector('.header');
+        const h2 = document.createElement('h2');
+        h2.textContent = 'Choose wisely!';
+        h2.style.fontStyle = 'italic';
+        header.appendChild(h2);
+    }
 }
+//Listen for hover events to add the subheader if not visible
+const buttons = document.querySelectorAll('.button');
+buttons.forEach((btn) => {
+    btn.addEventListener('mouseover', hoverHeader);
+})
