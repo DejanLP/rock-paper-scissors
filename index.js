@@ -8,15 +8,20 @@ function computerPlay () {
     let random = parseInt(Math.random() * 100);
 
     if(random < 33) {
-        return 'paper';
+        return 'Paper';
     }
     else if (random < 66) {
-        return 'rock';
+        return 'Rock';
     }
     else {
-        return 'scissors';
+        return 'Scissors';
     }
 }
+
+//global count
+let playerCount = 0;
+let computerCount = 0;
+let display = document.createElement('div');
 
 //one round of rock paper scissors and return result
 function playRPS (playerSelection, computerSelection) {
@@ -25,76 +30,56 @@ function playRPS (playerSelection, computerSelection) {
     if (playerSelectionFormatted == 'rock') {
         if (computerSelection == 'rock') {
             console.log(playerSelection + ' vs. ' + computerSelection);
-            return 'noWinner';
+            console.log(`No winner! Score stays ${playerCount}:${computerCount}!`);
         }
         else if (computerSelection == 'paper') {
             console.log(playerSelection + ' vs. ' + computerSelection);
-            return 'compWins';
+            computerCount += 1;
+            console.log(`Computer wins! New score: ${playerCount}:${computerCount}!`);
         }
         console.log(playerSelection + ' vs. ' + computerSelection);
-        return 'playerWins';
+        playerCount += 1;
+        console.log(`You win! New score: ${playerCount}:${computerCount}!`);
 
     }
     else if (playerSelectionFormatted == 'paper') {
         if (computerSelection == 'rock') {
             console.log(playerSelection + ' vs. ' + computerSelection);
-            return 'playerWins';
+            playerCount += 1;
+            console.log(`You win! New score: ${playerCount}:${computerCount}!`);
         }
         else if (computerSelection == 'paper') {
             console.log(playerSelection + ' vs. ' + computerSelection);
-            return 'noWinner';
+            console.log(`No winner! Score stays ${playerCount}:${computerCount}!`);
         }
         console.log(playerSelection + ' vs. ' + computerSelection);
-        return 'compWins';
+        computerCount += 1;
+            console.log(`Computer wins! New score: ${playerCount}:${computerCount}!`);
 
     }
     else if (playerSelectionFormatted == 'scissors'){
         if (computerSelection == 'rock') {
             console.log(playerSelection + ' vs. ' + computerSelection);
-            return 'compWins';
-        }
-        else if (computerSelection == 'paper') {
-            console.log(playerSelection + ' vs. ' + computerSelection);
-            return 'playerWins';
-        }
-        console.log(playerSelection + ' vs. ' + computerSelection);
-        return 'noWinner';
-    }
-    else {
-        return 'invalid'
-    }
-}
-//best of five and store points of each player
-function playGame() {
-    let playerCount = 0;
-    let computerCount = 0;
-
-    while (playerCount < 3 || computerCount < 3) {
-        const playerInput = prompt('Enter your choice');
-        const computerInput = computerPlay();
-
-        const round = playRPS(playerInput, computerInput);
-        if(round == 'playerWins') {
-            playerCount += 1;
-            console.log(`You win! New score: ${playerCount}:${computerCount}!`);
-        }
-        else if (round == 'compWins') {
             computerCount += 1;
             console.log(`Computer wins! New score: ${playerCount}:${computerCount}!`);
         }
-        else if (round == 'invalid'){
-            console.log('Please enter one of rock, paper or scissors!');
+        else if (computerSelection == 'paper') {
+            console.log(playerSelection + ' vs. ' + computerSelection);
+            playerCount += 1;
+            console.log(`You win! New score: ${playerCount}:${computerCount}!`);
+        }
+        console.log(playerSelection + ' vs. ' + computerSelection);
+        console.log(`No winner! Score stays ${playerCount}:${computerCount}!`);
+    }
+    else {
+        console.log('Please enter one of rock, paper or scissors!');
+    }
+    if(playerCount == 3 || computerCount == 3) {
+        if(playerCount == 3) {
+            console.log(`Best of 5 is over! You win with the score ${playerCount}:${computerCount}!`);
         }
         else {
-            console.log(`No winner! Score stays ${playerCount}:${computerCount}!`);
-        }
-        if(playerCount == 3 || computerCount == 3) {
-            if(playerCount == 3) {
-                console.log(`Best of 5 is over! You win with the score ${playerCount}:${computerCount}!`);
-                break;
-            }
             console.log(`Best of 5 is over! Computer wins with the score ${playerCount}:${computerCount}!`);
-            break;
         }
     }
 }
@@ -109,12 +94,33 @@ function playGame() {
 const start = document.querySelector('.start-btn');
 start.addEventListener('click', initGame);
 
-
 /**
-            <button class="option rock">Rock</button>
-            <button class="option paper">Paper</button>
-            <button class="option scissors">Scissors</button>
+ * 
  */
+ const rock = document.createElement('button');
+ const scissors = document.createElement('button');
+ const paper = document.createElement('button');
+
+function addOptions() {
+    const buttons = document.querySelector('.buttons');
+
+    rock.classList.add('option');
+    rock.classList.add('rock');
+    rock.textContent = 'Rock';
+   
+    paper.classList.add('option');
+    paper.classList.add('paper');
+    paper.textContent = 'Paper';
+   
+    scissors.classList.add('option');
+    scissors.classList.add('scissors');
+    scissors.textContent = 'Scissors';
+
+    buttons.appendChild(rock);
+    buttons.appendChild(paper);
+    buttons.appendChild(scissors);
+}
+
 function initGame() {
     //new title for h1
     const h1 = document.querySelector('h1');
@@ -122,44 +128,10 @@ function initGame() {
 
     const start_btn = document.querySelector('.start-btn');
     start_btn.remove();
-    
-    //add option buttons
-    const buttons = document.querySelector('.buttons');
-    const rock = document.createElement('button');
-    const scissors = document.createElement('button');
-    const paper = document.createElement('button');
 
-    rock.classList.add('option');
-    rock.classList.add('rock');
-
-    paper.classList.add('option');
-    paper.classList.add('paper');
-    paper.textContent = 'Paper';
-
-    scissors.classList.add('option');
-    scissors.classList.add('scissors');
-
-    buttons.appendChild(rock);
-    buttons.appendChild(paper);
-    buttons.appendChild(scissors);
-
-    //playGame;
-} 
-
-
-//Add a subheader when hovering over a button
-function hoverHeader() {
-    const h2Exist = document.querySelector('h2');
-    if(h2Exist == null) {
-        const header = document.querySelector('.header');
-        const h2 = document.createElement('h2');
-        h2.textContent = 'Choose wisely!';
-        h2.style.fontStyle = 'italic';
-        header.appendChild(h2);
-    }
+    addOptions();
 }
-//Listen for hover events to add the subheader if not visible
-const buttons = document.querySelectorAll('.button');
-buttons.forEach((btn) => {
-    btn.addEventListener('mouseover', hoverHeader);
-})
+
+rock.addEventListener('click', () => {playRPS(rock.innerText, computerPlay())});
+paper.addEventListener('click', () => {playRPS(paper.innerText, computerPlay())});
+scissors.addEventListener('click', () => {playRPS(scissors.innerText, computerPlay())});
