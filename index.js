@@ -81,9 +81,11 @@ function playRPS (playerSelection, computerSelection) {
     }
     if(playerCount == 3 || computerCount == 3) {
         if(playerCount == 3) {
+            endGame();
             display.textContent = `Best of 5 is over! You win with the score ${playerCount}:${computerCount}!`;
         }
         else {
+            endGame();
             display.textContent = `Best of 5 is over! Computer wins with the score ${playerCount}:${computerCount}!`;
         }
     }
@@ -97,7 +99,7 @@ function playRPS (playerSelection, computerSelection) {
 
 //listen for start button, to start the game
 const start = document.querySelector('.start-btn');
-start.addEventListener('click', initGame);
+start.addEventListener('click', () => {initGame()});
 
 /**
  * 
@@ -135,6 +137,12 @@ function initGame() {
     start_btn.remove();
 
     addOptions();
+}
+
+function endGame() {
+    rock.remove();
+    paper.remove();
+    scissors.remove();
 }
 
 rock.addEventListener('click', () => {playRPS(rock.innerText, computerPlay())});
