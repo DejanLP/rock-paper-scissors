@@ -6,6 +6,12 @@ body{
     justify-content: center;
     align-items: center;
     flex-grow: 1;
+    background-color: #016170;
+    color: #FFFFFF;
+}
+
+div {
+
 }
 
 .buttons {
@@ -19,10 +25,16 @@ body{
 .start-btn {
     padding: 10px;
     margin: auto auto;
+    background-color: #009393;
+    border-radius: 5px;
+    color: #FFFFFF;
 }
 .option {
     width: 10em;
     height: 10em;
+    background-color: #009393;
+    border-radius: 5px;
+    color: #FFFFFF;
 }
 
 .column-center {
