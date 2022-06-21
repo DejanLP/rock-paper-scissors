@@ -8,20 +8,25 @@ function computerPlay () {
     let random = parseInt(Math.random() * 100);
 
     if(random < 33) {
-        return 'Paper';
+        return 'paper';
     }
     else if (random < 66) {
-        return 'Rock';
+        return 'rock';
     }
     else {
-        return 'Scissors';
+        return 'scissors';
     }
 }
 
 //global count
 let playerCount = 0;
 let computerCount = 0;
+
+const container = document.querySelector('.container');
 let display = document.createElement('div');
+display.classList.add('display');
+container.appendChild(display);
+
 
 //one round of rock paper scissors and return result
 function playRPS (playerSelection, computerSelection) {
@@ -29,57 +34,57 @@ function playRPS (playerSelection, computerSelection) {
 
     if (playerSelectionFormatted == 'rock') {
         if (computerSelection == 'rock') {
-            console.log(playerSelection + ' vs. ' + computerSelection);
-            console.log(`No winner! Score stays ${playerCount}:${computerCount}!`);
+            display.textContent = `${playerSelection}  vs. ${computerSelection} \n 
+                                    No winner! Score stays ${playerCount}:${computerCount}!`;
         }
         else if (computerSelection == 'paper') {
-            console.log(playerSelection + ' vs. ' + computerSelection);
             computerCount += 1;
-            console.log(`Computer wins! New score: ${playerCount}:${computerCount}!`);
+            display.textContent = `${playerSelection}  vs. ${computerSelection} \n 
+                                    Computer wins! New score: ${playerCount}:${computerCount}!`;
         }
-        console.log(playerSelection + ' vs. ' + computerSelection);
         playerCount += 1;
-        console.log(`You win! New score: ${playerCount}:${computerCount}!`);
+        display.textContent = `${playerSelection}  vs. ${computerSelection} \n 
+                                You win! New score: ${playerCount}:${computerCount}!`;
 
     }
     else if (playerSelectionFormatted == 'paper') {
         if (computerSelection == 'rock') {
-            console.log(playerSelection + ' vs. ' + computerSelection);
             playerCount += 1;
-            console.log(`You win! New score: ${playerCount}:${computerCount}!`);
+            display.textContent = `${playerSelection}  vs. ${computerSelection} \n 
+                                    You win! New score: ${playerCount}:${computerCount}!`;
         }
         else if (computerSelection == 'paper') {
-            console.log(playerSelection + ' vs. ' + computerSelection);
-            console.log(`No winner! Score stays ${playerCount}:${computerCount}!`);
+            display.textContent = `${playerSelection}  vs. ${computerSelection} \n 
+                                    No winner! Score stays ${playerCount}:${computerCount}!`
         }
-        console.log(playerSelection + ' vs. ' + computerSelection);
         computerCount += 1;
-            console.log(`Computer wins! New score: ${playerCount}:${computerCount}!`);
+        display.textContent = `${playerSelection}  vs. ${computerSelection} \n 
+                                Computer wins! New score: ${playerCount}:${computerCount}!`;
 
     }
     else if (playerSelectionFormatted == 'scissors'){
         if (computerSelection == 'rock') {
-            console.log(playerSelection + ' vs. ' + computerSelection);
             computerCount += 1;
-            console.log(`Computer wins! New score: ${playerCount}:${computerCount}!`);
+            display.textContent = `${playerSelection}  vs. ${computerSelection} \n
+                                    Computer wins! New score: ${playerCount}:${computerCount}!`; 
         }
         else if (computerSelection == 'paper') {
-            console.log(playerSelection + ' vs. ' + computerSelection);
             playerCount += 1;
-            console.log(`You win! New score: ${playerCount}:${computerCount}!`);
+            display.textContent = `${playerSelection}  vs. ${computerSelection} \n
+                                    You win! New score: ${playerCount}:${computerCount}!`;
         }
-        console.log(playerSelection + ' vs. ' + computerSelection);
-        console.log(`No winner! Score stays ${playerCount}:${computerCount}!`);
+        display.textContent = `${playerSelection}  vs. ${computerSelection} \n
+                                No winner! Score stays ${playerCount}:${computerCount}!`;
     }
     else {
-        console.log('Please enter one of rock, paper or scissors!');
+        display.textContent = 'Please enter one of rock, paper or scissors!';
     }
     if(playerCount == 3 || computerCount == 3) {
         if(playerCount == 3) {
-            console.log(`Best of 5 is over! You win with the score ${playerCount}:${computerCount}!`);
+            display.textContent = `Best of 5 is over! You win with the score ${playerCount}:${computerCount}!`;
         }
         else {
-            console.log(`Best of 5 is over! Computer wins with the score ${playerCount}:${computerCount}!`);
+            display.textContent = `Best of 5 is over! Computer wins with the score ${playerCount}:${computerCount}!`;
         }
     }
 }
