@@ -10,10 +10,6 @@ body{
     color: #FFFFFF;
 }
 
-div {
-
-}
-
 .buttons {
     display: flex;
     flex-direction: row;
